@@ -27,7 +27,7 @@ struct RandomDouble {
   std::mt19937 rng;
   std::uniform_real_distribution<double> urd;
 
-  RandomDouble(std::mt19937 &engine) : rng(engine) {}
+  RandomDouble(std::random_device &rd) : rng(rd()) {}
 
   double next_double(double low, double high) {
     return urd(rng, decltype(urd)::param_type(low, high));
@@ -35,8 +35,8 @@ struct RandomDouble {
 };
 
 double simulate_transmissivity_serial(double a, double b, double p, uint64_t n,
-                                      std::mt19937 gen);
+                                      std::random_device &rd);
 double simulate_transmissivity_openmp(double a, double b, double p, uint64_t n,
-                                      std::mt19937 gen);
+                                      std::random_device &rd);
 
 #endif // COMMON_H_

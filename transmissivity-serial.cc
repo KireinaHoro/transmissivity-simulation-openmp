@@ -15,8 +15,8 @@
  * \return transmissivity.
  */
 double simulate_transmissivity_serial(double a, double b, double p, uint64_t n,
-                                      std::mt19937 engine) {
-  static RandomDouble gen(engine);
+                                      std::random_device &rd) {
+  static RandomDouble gen(rd);
   uint64_t count = 0;
   for (uint64_t i = 0; i < n; ++i) {
     double x = 0;
